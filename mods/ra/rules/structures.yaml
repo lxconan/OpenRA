@@ -1628,7 +1628,7 @@ POWR:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 10
-		Prerequisites: ~techlevel.infonly
+		Prerequisites: ~techlevel.infonly, ~structures.china
 		Description: Provides power for other structures.
 	Valued:
 		Cost: 300
@@ -1655,6 +1655,23 @@ POWR:
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
+
+POWR.China:
+	Inherits: POWR
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 10
+		Prerequisites: ~techlevel.infonly
+		ForceFaction: china
+		Description: Provides power for other structures for China.
+	Valued:
+		Cost: 10
+	Tooltip:
+		Name: Power Plant (CN)
+	Power:
+		Amount: 1200
+	RenderSprites:
+		Image: powr
 
 APWR:
 	Inherits: ^Building
