@@ -143,7 +143,7 @@ V2RL:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 220
-		Prerequisites: fix, ~vehicles.soviet, ~techlevel.medium
+		Prerequisites: fix, ~vehicles.soviet, ~techlevel.medium, ~!vehicles.china
 		Description: Soviet Main Battle Tank, with dual cannons\n  Strong vs Vehicles\n  Weak vs Infantry, Aircraft
 	Valued:
 		Cost: 1150
@@ -181,6 +181,25 @@ V2RL:
 		Prerequisites: vehicles.upgraded
 	Selectable:
 		DecorationBounds: 1194, 1194
+
+3TNK.China:
+	Inherits: 3TNK
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 220
+		Prerequisites: fix, ~vehicles.china, ~techlevel.medium
+		Description: China Main Battle Tank, with dual cannons\n  Strong vs Vehicles\n  Weak vs Infantry, Aircraft
+	Valued:
+		Cost: 115
+	Tooltip:
+		Name: Heavy Tank (CN)
+		GenericName: Tank
+	Health:
+		HP: 90000
+	Mobile:
+		Speed: 80
+	RenderSprites:
+		Image: 3TNK
 
 4TNK:
 	Inherits: ^TrackedVehicle
