@@ -135,7 +135,7 @@ SPEN:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 50
-		Prerequisites: anypower, ~structures.soviet, ~techlevel.low
+		Prerequisites: anypower, ~structures.soviet, ~techlevel.low, ~!structures.china
 		Description: Produces and repairs\nsubmarines and transports.
 	Targetable:
 		TargetTypes: WaterActor, Structure, C4, DetonateAttack, SpyInfiltrate
@@ -186,27 +186,27 @@ SPEN:
 		SpawnOffset: -1024,1024,0
 		Facing: 640
 		ExitCell: 0,2
-		ProductionTypes: Ship
+		ProductionTypes: Ship, Boat
 	Exit@b2:
 		RequiresCondition: !being-captured
 		SpawnOffset: 1024,1024,0
 		Facing: 896
 		ExitCell: 2,2
-		ProductionTypes: Ship
+		ProductionTypes: Ship, Boat
 	Exit@b3:
 		RequiresCondition: !being-captured
 		SpawnOffset: -1024,-1024,0
 		Facing: 384
 		ExitCell: 0,0
-		ProductionTypes: Ship
+		ProductionTypes: Ship, Boat
 	Exit@b4:
 		RequiresCondition: !being-captured
 		SpawnOffset: 1024,-1024,0
 		Facing: 128
 		ExitCell: 2,0
-		ProductionTypes: Ship
+		ProductionTypes: Ship, Boat
 	Production:
-		Produces: Ship, Submarine
+		Produces: Ship, Submarine, Boat
 	-SpawnActorsOnSell:
 	RepairsUnits:
 		HpPerStep: 1000
@@ -234,6 +234,9 @@ SPEN:
 	ProvidesPrerequisite@russia:
 		Factions: russia
 		Prerequisite: ships.russia
+	ProvidesPrerequisite@china:
+		Factions: china
+		Prerequisite: ships.china
 	ProvidesPrerequisite@ukraine:
 		Factions: ukraine
 		Prerequisite: ships.ukraine
@@ -249,6 +252,9 @@ SPEN:
 	ProvidesPrerequisite@ukrainianstructure:
 		RequiresPrerequisites: structures.ukraine
 		Prerequisite: ships.ukraine
+	ProvidesPrerequisite@chinesestructure:
+		RequiresPrerequisites: structures.china
+		Prerequisite: ships.china
 	ProvidesPrerequisite@buildingname:
 	MapEditorData:
 		ExcludeTilesets: INTERIOR
@@ -261,6 +267,20 @@ SPEN:
 		Type: Rectangle
 			TopLeft: -555, -1110
 			BottomRight: 555, 1110
+
+SPEN.China:
+	Inherits: SPEN
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 50
+		Prerequisites: anypower, ~techlevel.low, ~structures.china
+		Description: Produces and repairs\nsubmarines and transports.
+	RenderSprites:
+		Image: SPEN
+	Valued:
+		Cost: 400
+	Tooltip:
+		Name: Sub Pen (CN)
 
 SYRD:
 	Inherits: ^Building
@@ -922,7 +942,7 @@ SAM:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 100
-		Prerequisites: dome, ~structures.soviet, ~techlevel.medium
+		Prerequisites: dome, ~structures.soviet, ~techlevel.medium, ~!structures.china
 		Description: Anti-Air base defense.\nRequires power to operate.\n  Strong vs Aircraft\n  Weak vs Ground units
 	Valued:
 		Cost: 700
@@ -964,6 +984,24 @@ SAM:
 		Amount: -40
 	-BodyOrientation:
 	ClassicFacingBodyOrientation:
+
+SAM.China:
+	Inherits: SAM
+	RenderSprites:
+		Image: SAM
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 100
+		Prerequisites: dome, ~techlevel.medium, ~structures.china
+		Description: Anti-Air base defense.\nRequires power to operate.\n  Strong vs Aircraft\n  Weak vs Ground units
+	Valued:
+		Cost: 350
+	Tooltip:
+		Name: Read Flag (CN)
+	Armament:
+		Weapon: Nike.China
+		LocalOffset: 0,0,320
+		MuzzleSequence: muzzle
 
 ATEK:
 	Inherits: ^ScienceBuilding
@@ -1337,7 +1375,7 @@ PROC.China:
 		ForceFaction: china
 		Description: Refines Ore and Gems\ninto credits.
 	Valued:
-		Cost: 14
+		Cost: 750
 	Tooltip:
 		Name: Ore Refinery (CN)
 	StoresResources:
@@ -1491,7 +1529,7 @@ AFLD:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 130
-		Prerequisites: dome, ~structures.soviet, ~techlevel.medium, ~!structures.ukraine
+		Prerequisites: dome, ~structures.soviet, ~techlevel.medium, ~!structures.ukraine, ~!structures.china
 		Description: Produces and reloads aircraft.\n  Special Ability: Spy Plane\n  Special Ability: Paratroopers
 	Valued:
 		Cost: 500
@@ -1641,6 +1679,16 @@ AFLD.Ukraine:
 	RenderSprites:
 		Image: afld
 
+AFLD.China:
+	Inherits: AFLD
+	Buildable:
+		Prerequisites: dome, ~techlevel.medium, ~structures.china
+		Description: Produces and reloads aircraft.\n  Special Ability: Spy Plane\n  Special Ability: Paratroopers
+	Valued:
+		Cost: 250
+	RenderSprites:
+		Image: afld
+
 POWR:
 	Inherits: ^Building
 	Inherits@POWER_OUTAGE: ^DisabledByPowerOutage
@@ -1690,7 +1738,7 @@ POWR.China:
 		ForceFaction: china
 		Description: Provides power for other structures for China.
 	Valued:
-		Cost: 10
+		Cost: 150
 	Tooltip:
 		Name: Power Plant (CN)
 	Power:
@@ -1707,7 +1755,7 @@ APWR:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 110
-		Prerequisites: dome, ~techlevel.medium
+		Prerequisites: dome, ~techlevel.medium, ~!structures.china
 		Description: Provides double the power of\na standard Power Plant.
 	Valued:
 		Cost: 500
@@ -1737,6 +1785,22 @@ APWR:
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
+
+APWR.China:
+	Inherits: APWR
+	RenderSprites:
+		Image: APWR
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 110
+		Prerequisites: ~techlevel.medium, ~structures.china
+		Description: Provides double the power of\na standard Power Plant.
+	Valued:
+		Cost: 500
+	Health:
+		HP: 100000
+	Power:
+		Amount: 3000
 
 STEK:
 	Inherits: ^ScienceBuilding
@@ -1787,7 +1851,7 @@ BARR:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 30
-		Prerequisites: anypower, ~structures.soviet, ~techlevel.infonly
+		Prerequisites: anypower, ~structures.soviet, ~techlevel.infonly, ~!structures.china
 		Description: Trains infantry.
 	Valued:
 		Cost: 500
@@ -1863,6 +1927,22 @@ BARR:
 		Types: SpyInfiltrate
 	Targetable:
 		TargetTypes: GroundActor, C4, DetonateAttack, Structure, SpyInfiltrate
+
+BARR.China:
+	Inherits: BARR
+	RenderSprites:
+		Image: BARR
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 30
+		Prerequisites: anypower, ~structures.china, ~techlevel.infonly
+		Description: Trains infantry.
+	Valued:
+		Cost: 250
+	Tooltip:
+		Name: China Barracks
+	Health:
+		HP: 160000
 
 KENN:
 	Inherits: ^Building

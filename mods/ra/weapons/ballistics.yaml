@@ -66,6 +66,15 @@
 		Versus:
 			Heavy: 115
 
+super105mm:
+	Inherits: ^Cannon
+	ReloadDelay: 40
+	Range: 5c0
+	Burst: 2
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Heavy: 115
+
 120mm:
 	Inherits: ^Cannon
 	ReloadDelay: 90
@@ -73,6 +82,18 @@
 	InvalidTargets: Air, Infantry
 	Warhead@1Dam: SpreadDamage
 		Damage: 6000
+		Versus:
+			Heavy: 115
+		InvalidTargets: Air
+
+super120mm:
+	Inherits: ^Cannon
+	Range: 8c0
+	ReloadDelay: 50
+	Burst: 2
+	InvalidTargets: Air, Infantry
+	Warhead@1Dam: SpreadDamage
+		Damage: 8000
 		Versus:
 			Heavy: 115
 		InvalidTargets: Air
